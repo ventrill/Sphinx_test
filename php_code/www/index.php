@@ -52,6 +52,7 @@ echo 'GetLastError'; dump_var($SphinxClient->getLastError());
 //$SphinxClient->SetSelect('*, id as document_id, group_id as document_group_id, date_added AS document_date_added, title as document_title, content as document_content');
 $SphinxClient->SetSelect('*, id as document_id');
 
+
 // in config
 // sql_attr_uint		= group_id
 // @link http://us2.php.net/manual/en/sphinxclient.setfilter.php
@@ -61,7 +62,8 @@ $SphinxClient->SetSelect('*, id as document_id');
 //$SphinxClient->SetFilterRange('group_id2',5,7, true);
 
 // @link http://us2.php.net/manual/en/sphinxclient.query.php
-$result = $SphinxClient->query("this is", 'test1');
+$query = isset($_GET['query'])? $_GET['query'] : '';
+$result = $SphinxClient->query($query, 'test1');
 //echo 'result'; print_var($result);
 //echo 'result[matches]'; print_var($result['matches']);
 
@@ -95,3 +97,8 @@ if (count($SearchResult) && isset($result['attrs']) )
 // @link http://us2.php.net/manual/en/sphinxclient.getlasterror.php
 echo 'GetLastError'; dump_var($SphinxClient->GetLastError());
 
+?>
+
+<form action="" method="get">
+    <input type="text" name="query" value="<?=$_GET['query'];?>" />
+</form>
