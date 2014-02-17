@@ -10,3 +10,5 @@ sudo indexer --all --rotate
 #for test sphinxsearch mysql connection
 search 'test'
 search 'is my'
+
+sudo cp -v sphinx.conf /etc/sphinxsearch/sphinx.conf && sudo /etc/init.d/sphinxsearch restart && sudo indexer --all --rotate

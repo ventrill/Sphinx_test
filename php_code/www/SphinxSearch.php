@@ -96,8 +96,6 @@ class SphinxSearch
 //        $this->_raw_results = $this->_sphinx->query($query, $this->_index);
         $this->_raw_results = $this->_sphinx->query($query);
 
-        dump_var($this->_raw_results);
-
         if( $this->_raw_results ) {
 
             //Make a more sensible (for our data) return array
@@ -107,6 +105,16 @@ class SphinxSearch
 
         return $this->_results;
 
+    }
+
+    public function getStatus()
+    {
+        return $this->_sphinx->status();
+    }
+
+    public function getRawResults()
+    {
+        return $this->_raw_results;
     }
 
     /**
@@ -149,6 +157,15 @@ class SphinxSearch
         }
     }
 
+    public function getLastError()
+    {
+        return $this->_sphinx->GetLastError();
+    }
+
+    public function getLastWarning()
+    {
+        return $this->_sphinx->GetLastWarning();
+    }
 
 
 } 
